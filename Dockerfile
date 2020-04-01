@@ -1,4 +1,6 @@
-FROM fluent/fluentd:stable
+FROM fluent/fluentd:v1.10-1
+
+USER root
 
 RUN apk update \
     && apk add ruby-dev \
@@ -11,3 +13,5 @@ RUN apk update \
     && apk del build-base \
     && rm -rf /var/cache/apk/*
 COPY fluent.conf /fluentd/etc/fluent.conf
+
+USER fluent
